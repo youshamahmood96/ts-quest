@@ -1,9 +1,10 @@
-import express from "express";
+import express from 'express';
+import { Request, Response }  from "express";
 const app = express();
 const port = 8000; // default port to listen
 
 // define a route handler for the default home page
-app.get( "/", ( req, res ) => {
+app.get( "/", ( req:Request, res:Response ) => {
     res.send( "Hello world!" );
 } );
 
