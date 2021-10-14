@@ -1,11 +1,7 @@
 import { model, Schema } from "mongoose";
+import Employee from "../types/employeeType";
 
-interface Employee{
-    name:string;
-    nickname:string;
-    email:string;
-    phone:number;
-}
+
 const EmployeeSchema = new Schema<Employee>({
     name: { type: String, required: true },
     nickname: { type: String, required: true },
