@@ -1,13 +1,11 @@
 import express from 'express';
 import dbConnect from './dbConnect';
-import { Request, Response }  from "express";
+import router from './router/employeeRouter';
 const port = 8000;
 const init = async():Promise<void> => {
     const app = express();
-    console.log(`Listening to port : ${port}`);
-    app.use('/', (req:Request, res:Response) => {
-        res.send(`${req.method} at \n` + new Date());
-    });
+    app.use(express.json())
+    app.use('/api',router)
     await dbConnect()
     await app.listen(port)
 }

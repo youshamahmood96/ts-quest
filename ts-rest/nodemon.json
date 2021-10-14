@@ -2,5 +2,10 @@
     "ignore": ["**/*.test.ts", "**/*.spec.ts", "node_modules"],
     "watch": ["src"],
     "exec": "yarn start",
-    "ext": "ts"
+    "ext": "ts",
+    "events": {
+      "restart": "kill-port 8000",
+      "crash": "kill-port 8000"
+    },
+    "delay": "1500"
   }
