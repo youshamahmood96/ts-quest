@@ -3,9 +3,7 @@ const dbConnect = async() => {
     const uri:string = 'mongodb://localhost:27017/ts-crud';
     try{
         await mongoose.connect(uri)
-        mongoose.Promise = global.Promise;
-        console.log('dbConnected');
-        
+        mongoose.Promise = global.Promise;        
     }
     catch(err){
         console.log(err);
