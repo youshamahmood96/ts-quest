@@ -3,7 +3,7 @@ const dbConnect = async() => {
     try{
         const uri:string = process.env.DB_URI as string;       
         const options:mongoose.ConnectOptions = {
-            dbName: 'mongodb',
+            dbName: 'ts-auth',
             autoIndex:true
           }
         await mongoose.connect(uri,options)
