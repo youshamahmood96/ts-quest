@@ -6,7 +6,7 @@ const {
   deleteUserService,
   getUserByUserEmail
 } = require("../services/user.services");
-const { hashSync, genSaltSync, compareSync } = require("bcrypt");
+const { hashSync, genSaltSync, compareSync, compare } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 module.exports = {
   createUser: (req, res) => {
@@ -112,7 +112,7 @@ module.exports = {
         });
       }
       console.log(typeof body.password);
-      const result = compareSync(body.password, results.password);
+      const result = compare(body.password, results.password);
       if (result) {
         results.password = undefined;
         const jsontoken = sign({ result: results }, process.env.JWT_KEY, {

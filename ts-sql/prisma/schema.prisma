@@ -14,14 +14,14 @@ model User {
   id         Int       @id @default(autoincrement())
   uuid       String    @unique @default(uuid())
   email      String    @unique
-  firstname  String
-  lastname   String
-  nickname   String
+  firstname  String    @db.VarChar(255)
+  lastname   String    @db.VarChar(255)
+  password   String    @db.Char(150)
+  nickname   String?   @db.VarChar(255)
   posts      Post[]
   comments   Comment[]
-  password   String
-  dob        DateTime
-  bio        String    @db.VarChar(255)    
+  dob        DateTime? @db.Date
+  bio        String?   @db.VarChar(255)
   followedBy User[]    @relation("UserFollows", references: [id])
   following  User[]    @relation("UserFollows", references: [id])
   createdAt  DateTime  @default(now()) @map("created_at")
@@ -34,7 +34,7 @@ model Post {
   id        Int         @id @default(autoincrement())
   uuid      String      @unique @default(uuid())
   title     String      @db.VarChar(255)
-  body      String
+  body      String      @db.VarChar(255)
   reactions Reactions[]
   comments  Comment[]
   user      User        @relation(fields: [userId], references: [id])
@@ -48,7 +48,7 @@ model Post {
 model Comment {
   id        Int         @id @default(autoincrement())
   uuid      String      @unique @default(uuid()) // research about it
-  body      String?
+  body      String?     @db.VarChar(255)
   reactions Reactions[]
   user      User        @relation(fields: [userId], references: [id])
   userId    Int
@@ -68,4 +68,3 @@ enum Reactions {
   SURPRISE
   ANGRY
 }
-
